@@ -1,0 +1,84 @@
+.ig-card{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: .8rem;
+    justify-content: space-between;
+
+}
+
+.ig-card-hd{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+}
+
+.ig-card-dv{
+    display: flex;
+    flex-direction: column;
+}
+
+.ig-card-sp{
+    opacity: .6;
+}
+
+.ig-card-img{
+    width: 48px;
+    height: 48px;
+    border-radius: 1000px;
+
+}
+
+.ig-card-bt{
+    margin-left: 50px;
+    border: none;
+    color: rgb(0, 149, 246);
+    background-color: black;
+    font-weight: bold;
+    position: fixed;
+}
+
+.ig-card-bt:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.ig-card-bt-follow{
+    margin-left: 50px;
+    border: none;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    position: fixed;
+}
+
+.ig-card-bt-follow:hover{
+    cursor: pointer;
+    color: red;
+    border-radius: 1rem;
+    transition: .3s ease all;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.ig-card-st{
+    font-size: 1rem;
+}
+
+.ig-card-text{
+    display: block;
+}
+
+.ig-card-bt-follow:hover .ig-card-text{
+    display: none
+}
+
+.ig-card-bt-follow:hover .ig-card-NoFollow{
+    display: block
+}
+
+
+.ig-card-NoFollow{
+    display: none;
+}
