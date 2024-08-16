@@ -6,7 +6,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-image: url('../src/img/fondo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,9 +37,17 @@ body {
   text-align: center;
 }
 
+@keyframes titulo {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
 .tablero h1 {
-  color: #eee;
+  color: #09f;
   margin-bottom: 16px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  animation: titulo 5s infinite;
+  font-weight: bold;
 }
 
 .tablero button {

@@ -8,8 +8,16 @@ import { GanadorModal } from './componentes/GanadorModal'
 
 
 function App() {
-  const [tablero, setTablero] = useState(Array(9).fill(null))
-  const [turno, setTurno] = useState(turnos.X)
+  const [tablero, setTablero] = useState(() => {
+    const tableroLocalStorage = window.localStorage.getItem('tablero')
+    if(tableroLocalStorage) return JSON.parse(tableroLocalStorage)
+    return Array(9).fill(null)
+  })
+
+  const [turno, setTurno] = useState(() => {
+    const turnoLocalStorage = window.localStorage.getItem('turno')
+    return turnoLocalStorage ?? turnos.X
+  })
   //null es que nadie gana, false sería un empate
   const [ganador, setGanador] = useState(null)
 
@@ -17,6 +25,9 @@ function App() {
     setTablero(Array(9).fill(null))
     setTurno(turnos.X)
     setGanador(null)
+
+    window.localStorage.removeItem('tablero')
+    window.localStorage.removeItem('turno')
   }
 
 
@@ -31,6 +42,9 @@ function App() {
     //cambiar el turno
     const nuevoTurno = turno === turnos.X ? turnos.O : turnos.X 
     setTurno(nuevoTurno)
+    //guardar aqui partida
+    window.localStorage.setItem('tablero', JSON.stringify(nuevoTablero))
+    window.localStorage.setItem('turno', nuevoTurno)
     //revisar si hay un ganador
     const nuevoGanador = descubrirGanador(nuevoTablero)
     if (nuevoGanador) {
@@ -41,8 +55,8 @@ function App() {
 
   return (
     <main className='tablero'>
-      <h1>3 en Raya</h1>
-      <button onClick={reiniciarJuego}>Reiniciar el Juego</button>
+      <h1>Juego 3 en Raya</h1>
+      <button onClick={reiniciarJuego}>Reiniciar</button>
       <section className='juego'>
         {
           tablero.map((_, index) =>{

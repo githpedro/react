@@ -16,7 +16,7 @@ export function GanadorModal ({ganador, reiniciarJuego}) {
             </header>
 
             <footer>
-                <button>Empezar de nuevo</button>
+                <button onClick={reiniciarJuego}>Empezar de nuevo</button>
             </footer>
             </div>
         </section>
