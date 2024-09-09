@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import './App.css'
+import { getRandomFact } from "./facts"
 
-const gato_random_fact = 'https://catfact.ninja/fact';
+
 //const gato_endpoint = `https://cataas.com/cat/says/${firstWord}?fontSize=50&fontColor=red&json=true`
 const cat_prefix_image_url = 'https://caatas.com'
 
@@ -9,20 +10,15 @@ export function App () {
     const [fact, setFact] = useState()
     const [imageUrl, setImageurl] = useState()
 
-    useEffect(() => {
-        fetch(gato_random_fact)
-            .then(res => res.json())
-            .then(data => { 
-                const {fact} = data
-                setFact(fact)
-            })
+    useEffect(() =>{
+        getRandomFact(setFact).then(setFact)
     }, [])
 
     useEffect(() => {
         if (!fact) return     
         const threefirstWord = fact.split(' ', 3).join(' ')
 
-        fetch(`https://cataas.com/cat/says/${threefirstWord}?fontSize=50&fontColor=red&json=true`)
+        fetch(`https://cataas.com/cat/says/${threefirstWord}?size=50&color=red&json=true`)
             .then(res => res.json())
             .then(response => {
                 const {url} = response
@@ -30,8 +26,15 @@ export function App () {
             })
     }, [fact])
 
+    const handleClick = async () =>{
+        const newFact = await getRandomFact()
+        setFact(newFact)
+    }
+
     return (
         <main>
+
+        <button onClick={handleClick}>Clic Me to Generate a New Fact</button>
 
         <h1>App</h1>
         {fact && <p>{fact}</p>}
